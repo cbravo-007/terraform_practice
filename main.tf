@@ -10,7 +10,7 @@ resource "aws_vpc" "customVPC" {
 
 # Create a custom Internet Gateway
 resource "aws_internet_gateway" "default" {
-  vpc_id = "${aws_vpc.default.id}"
+  vpc_id = "${aws_vpc.customVPC.id}"
 }
 
 # Grant access to VPC
@@ -22,14 +22,14 @@ resource "aws_route" "internet_access" {
 
 # Create a public subnet to launch our instances into
 resource "aws_subnet" "webpublic" {
-  vpc_id                  = "${aws_vpc.default.id}"
+  vpc_id                  = "${aws_vpc.customVPC.id}"
   cidr_block              = "${var.aws_cidr_public_subnet}"
   map_public_ip_on_launch = true
 }
 
 # Create a private subnet to launch our instances into
 resource "aws_subnet" "appdbprivate" {
-  vpc_id                  = "${aws_vpc.default.id}"
+  vpc_id                  = "${aws_vpc.customVPC.id}"
   cidr_block              = "${var.aws_cidr_private_subnet}"
   map_public_ip_on_launch = true
 }
