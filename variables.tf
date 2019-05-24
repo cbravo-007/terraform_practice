@@ -25,10 +25,10 @@ variable "aws_listener_port" {
 
 variable "aws_ami_instance" {
   description = "Default AMI for instances"
-  default     = "ami-2d39803a"
+  default     = "ami-0565af6e282977273"
 }
 
 variable "aws_ami_launch_conf" {
   description = "Default AMI for launch configuration"
-  default     = "ami-2d39803a"
+  default     = "ami-0756fbca465a59a30"
 }
