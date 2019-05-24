@@ -109,7 +109,7 @@ resource "aws_security_group" "app" {
 
 # Security Group for DB tier. Port 9043 open
 resource "aws_security_group" "db" {
-  name        = "sec_group_web"
+  name        = "sec_group_db"
   description = "Security Group for Web tier"
   vpc_id      = "${aws_vpc.customVPC.id}"
   ingress {
