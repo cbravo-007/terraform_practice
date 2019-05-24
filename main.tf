@@ -172,3 +172,17 @@ resource "aws_instance" "app_tier" {
     Name = "EC2 Instance - App tier"
   }
 }
+
+resource "aws_instance" "rds_instance" {
+  ami = "${var.aws_ami_instance}"
+  instance_type = "t2.micro"
+  user_data = <<-EOF
+            #!/bin/bash
+            echo "Hello World, RDS Instance!!" > index.html
+            nohup busybox httpd -f -p 8080 &
+            EOF
+
+  tags = {
+    Name = "EC2 Instance - RDS Instance"
+  }
+}
