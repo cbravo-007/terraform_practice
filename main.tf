@@ -108,7 +108,7 @@ resource "aws_security_group" "app" {
 }
 
 # Security Group for DB tier. Port 9043 open
-resource "aws_security_group" "web" {
+resource "aws_security_group" "db" {
   name        = "sec_group_web"
   description = "Security Group for Web tier"
   vpc_id      = "${aws_vpc.customVPC.id}"
@@ -132,9 +132,9 @@ resource "aws_elb" "web" {
   security_groups = ["${aws_security_group.lba.id}"]
 #  instances       = ["${aws_instance.web.id}"]
   listener {
-    instance_port     = ${var.aws_listener_port}
+    instance_port     = "${var.aws_listener_port}"
     instance_protocol = "http"
-    lb_port           = ${var.aws_listener_port}
+    lb_port           = "${var.aws_listener_port}"
     lb_protocol       = "http"
   }
 }
