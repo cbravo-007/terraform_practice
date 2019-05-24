@@ -17,3 +17,18 @@ variable "aws_cidr_public_subnet" {
   description = "CIDR for Public Subnet"
   default     = "20.0.2.0/24"
 }
+
+variable "aws_listener_port" {
+  description = "listener port for load balancer"
+  default     = "8080"
+}
+
+variable "aws_ami_instance" {
+  description = "Default AMI for instances"
+  default     = "ami-2d39803a"
+}
+
+variable "aws_ami_launch_conf" {
+  description = "Default AMI for launch configuration"
+  default     = "ami-2d39803a"
+}

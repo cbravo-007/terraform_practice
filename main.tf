@@ -132,15 +132,15 @@ resource "aws_elb" "web" {
   security_groups = ["${aws_security_group.lba.id}"]
 #  instances       = ["${aws_instance.web.id}"]
   listener {
-    instance_port     = 8080
+    instance_port     = ${var.aws_listener_port}
     instance_protocol = "http"
-    lb_port           = 8080
+    lb_port           = ${var.aws_listener_port}
     lb_protocol       = "http"
   }
 }
 
 resource "aws_launch_configuration" "basicConfiguration" {
-  image_id = "ami-2d39803a"
+  image_id = "${var.aws_ami_launch_conf}"
   instance_type = "t2.micro"
   security_groups = ["${aws_security_group.web.id}"]
   lifecycle {
@@ -160,7 +160,7 @@ resource "aws_autoscaling_group" "auto_scaling_web" {
 }
 
 resource "aws_instance" "app_tier" {
-  ami = "ami-2d39803a"
+  ami = "${var.aws_ami_instance}"
   instance_type = "t2.micro"
   user_data = <<-EOF
             #!/bin/bash
