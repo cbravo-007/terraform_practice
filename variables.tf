@@ -1,6 +1,6 @@
 variable "aws_region" {
   description = "AWS region to launch servers."
-  default     = "us-west-2"
+  default     = "us-east-1"
 }
 
 variable "aws_cidr_vpc" {
@@ -31,4 +31,9 @@ variable "aws_ami_instance" {
 variable "aws_ami_launch_conf" {
   description = "Default AMI for launch configuration"
   default     = "ami-0756fbca465a59a30"
+}
+
+variable "aws_availability_zone" {
+  description = "Default zone for AWS"
+  default     = "us-east-1e"
 }
