@@ -197,7 +197,7 @@ resource "aws_rds_cluster_instance" "cluster_instances" {
 
 resource "aws_rds_cluster" "default" {
   cluster_identifier = "aurora-cluster-demo"
-  availability_zones = ["us-west-2a", "us-west-2b", "us-west-2c"]
+  availability_zones = ["${var.aws_availability_zone}"]
   database_name      = "mydb"
   master_username    = "foo"
   master_password    = "barbut8chars"
