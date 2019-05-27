@@ -152,6 +152,7 @@ resource "aws_autoscaling_group" "auto_scaling_web" {
   launch_configuration = "${aws_launch_configuration.basicConfiguration.id}"
   min_size = 1
   max_size = 1
+  vpc_zone_identifier       = ["${aws_subnet.webpublic.id}", "${aws_subnet.appdbprivate.id}"]
   tag {
     key = "Name"
     value = "auto_scaling_web"
