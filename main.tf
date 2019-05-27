@@ -150,8 +150,8 @@ resource "aws_launch_configuration" "basicConfiguration" {
 
 resource "aws_autoscaling_group" "auto_scaling_web" {
   launch_configuration = "${aws_launch_configuration.basicConfiguration.id}"
-  min_size = 2
-  max_size = 10
+  min_size = 1
+  max_size = 1
   tag {
     key = "Name"
     value = "auto_scaling_web"
