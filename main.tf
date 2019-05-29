@@ -20,12 +20,30 @@ resource "aws_route" "internet_access" {
   gateway_id             = "${aws_internet_gateway.default.id}"
 }
 
+# Creation of default subnet
+resource "aws_default_subnet" "default-east-1" {
+  availability_zone = "us-east-1"
+
+  tags = {
+    Name = "Default subnet for us-east-1"
+  }
+}
+
 # Create a public subnet to launch our instances into
 resource "aws_subnet" "webpublic" {
   vpc_id                  = "${aws_vpc.customVPC.id}"
   cidr_block              = "${var.aws_cidr_public_subnet}"
   map_public_ip_on_launch = true
 }
+
+resource "aws_default_subnet" "webpublic" {
+  availability_zone = "us-east-1"
+
+  tags = {
+    Name = "Default subnet for us-east-1"
+  }
+}
+
 
 # Create a private subnet to launch our instances into
 resource "aws_subnet" "appdbprivate" {
@@ -136,27 +154,6 @@ resource "aws_elb" "web" {
     instance_protocol = "http"
     lb_port           = "${var.aws_listener_port}"
     lb_protocol       = "http"
-  }
-}
-
-resource "aws_launch_configuration" "basicConfiguration" {
-  image_id = "${var.aws_ami_launch_conf}"
-  instance_type = "t2.micro"
-  security_groups = ["${aws_security_group.web.id}"]
-  lifecycle {
-    create_before_destroy = true
-  }
-}
-
-resource "aws_autoscaling_group" "auto_scaling_web" {
-  launch_configuration = "${aws_launch_configuration.basicConfiguration.id}"
-  min_size = 1
-  max_size = 1
-  vpc_zone_identifier       = ["${aws_subnet.webpublic.id}", "${aws_subnet.appdbprivate.id}"]
-  tag {
-    key = "Name"
-    value = "auto_scaling_web"
-    propagate_at_launch = true
   }
 }
 
