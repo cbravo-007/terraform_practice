@@ -1,7 +1,6 @@
 pipeline {
   agent any
   stages {
-    if(env.BRANCH_NAME == 'master'){
       stage ('Build') {
         steps {
           sh '''#!/bin/bash
@@ -20,8 +19,6 @@ pipeline {
             '''
         }
       }
-    }
-    if(env.BRANCH_NAME == 'dev'){
       stage ('Final Stage') {
         steps {
           sh '''#!/bin/bash
@@ -30,5 +27,4 @@ pipeline {
         }
       }
     }
-  }
 }
