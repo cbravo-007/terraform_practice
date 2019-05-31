@@ -1,7 +1,8 @@
 pipeline {
   agent any
   stages {
-    stage ('Build') {
+    if(env.BRANCH_NAME == 'master'){
+      stage ('Build') {
       steps {
         sh '''#!/bin/bash
                  echo "pipeline practice - DEV"
@@ -19,11 +20,14 @@ pipeline {
         '''  
       }
     }
-    stage ('Final Stage') {
-      steps {
-        sh '''#!/bin/bash
-              echo "Ha llegado a la ultima stage, la Final Stage del DEV"        
-        '''
+  }
+    if(env.BRANCH_NAME == 'master'){
+      stage ('Final Stage') {
+        steps {
+          sh '''#!/bin/bash
+                echo "Ha llegado a la ultima stage, la Final Stage del DEV"        
+          '''
+        }
       }
     }
   }
