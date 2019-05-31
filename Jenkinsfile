@@ -1,26 +1,23 @@
 pipeline {
   agent any
   stages {
-    if (env.BRANCH_NAME == "master") {
-      stage ('Test') {
-        
-          steps {
-            sh '''#!/bin/bash
-                  echo "MASTER practice"
-                  pwd
-                  ls -ltr
-            '''
-          }
-        }
-    }
-    if (env.BRANCH_NAME == "dev") {
+    stage ('Test') {
       steps {
-        sh '''#!/bin/bash
-              echo "DEV practice"
-              pwd
-              ls -ltr
-        '''
+        if (env.BRANCH_NAME == "master") {
+          sh '''#!/bin/bash
+                echo "MASTER practice"
+                pwd
+                ls -ltr
+          '''
+          }
+        if (env.BRANCH_NAME == "dev") {
+          sh '''#!/bin/bash
+                echo "DEV practice"
+                pwd
+                ls -ltr
+          '''
         }
+      }
     }
   }
 }
