@@ -1,7 +1,7 @@
 pipeline {
   agent any
-  if (env.BRANCH_NAME == "master") {
-    stages {
+  stages {
+    if (env.BRANCH_NAME == "master") {
       stage ('Test') {
         
           steps {
@@ -14,8 +14,8 @@ pipeline {
         }
     }
   }
-  if (env.BRANCH_NAME == "dev") {
-    stages {
+  stages {
+      if (env.BRANCH_NAME == "dev") {
           steps {
             sh '''#!/bin/bash
                   echo "DEV practice"
