@@ -3,9 +3,11 @@ pipeline {
   stages {
     stage ('Build') {
       steps {
-        sh echo "pipeline practice"
-        sh pwd
-        sh ls -ltr
+        bash '''#!/bin/bash
+                 echo "pipeline practice"
+                 pwd
+                 ls -ltr
+         '''
       }
     }
   }
