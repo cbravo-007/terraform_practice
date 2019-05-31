@@ -10,16 +10,20 @@ pipeline {
          '''
       }
       stage ('Testing and testing') {
-        sh '''#!/bin/bash
-              echo "Entro a la segunda stage - Testing"
-              ls /tmp
-              whereis java
-        '''
+        steps {
+          sh '''#!/bin/bash
+                echo "Entro a la segunda stage - Testing"
+                ls /tmp
+                whereis java
+          '''
+        }
       }
       stage ('Final Stage') {
-        sh '''#!/bin/bash
-              echo "Ha llegado a la ultima stage, la Final Stage"        
-        '''
+        steps {
+          sh '''#!/bin/bash
+                echo "Ha llegado a la ultima stage, la Final Stage"        
+          '''
+        }
       }
     }
   }
