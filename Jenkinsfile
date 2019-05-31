@@ -9,21 +9,21 @@ pipeline {
                  ls -ltr
          '''
       }
-      stage ('Dev stage') {
-        steps {
-          sh '''#!/bin/bash
-              echo "Esta es la nueva stage, DEV Stage"
-              ls /tmp
-              whereis java
-          '''  
-        }
+    }
+    stage ('Dev stage') {
+      steps {
+        sh '''#!/bin/bash
+            echo "Esta es la nueva stage, DEV Stage"
+            ls /tmp
+            whereis java
+        '''  
       }
-      stage ('Final Stage') {
-        steps {
-          sh '''#!/bin/bash
-                echo "Ha llegado a la ultima stage, la Final Stage del DEV"        
-          '''
-        }
+    }
+    stage ('Final Stage') {
+      steps {
+        sh '''#!/bin/bash
+              echo "Ha llegado a la ultima stage, la Final Stage del DEV"        
+        '''
       }
     }
   }
