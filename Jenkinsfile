@@ -3,9 +3,9 @@ pipeline {
   stages {
     stage ('Build') {
       steps {
-        echo "pipeline practice"
-        pwd
-        ls -ltr
+        sh echo "pipeline practice"
+        sh pwd
+        sh ls -ltr
       }
     }
   }
