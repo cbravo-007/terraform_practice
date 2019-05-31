@@ -1,30 +1,24 @@
 pipeline {
   agent any
   stages {
-      stage ('Build') {
-        steps {
-          sh '''#!/bin/bash
-                   echo "MASTER practice"
-                   pwd
-                   ls -ltr
-          '''
-        }
-      }
-      stage ('Testing and testing') {
-        steps {
+      stage ('Test') {
+        if env.BRANCH_NAME == "master" {
+          steps {
             sh '''#!/bin/bash
-                  echo "Entro a la segunda stage - Testing"
-                  ls /tmp
-                  whereis java
+                  echo "MASTER practice"
+                  pwd
+                  ls -ltr
             '''
+          }
         }
-      }
-      stage ('Final Stage') {
-        steps {
-          sh '''#!/bin/bash
-                echo "Ha llegado a la ultima stage, la Final Stage - DEV Branch"        
-          '''
+        if env.BRANCH_NAME == "dev" {
+          steps {
+            sh '''#!/bin/bash
+                  echo "DEV practice"
+                  pwd
+                  ls -ltr
+            '''
+          }
         }
-      }
-    }
+   }
 }
