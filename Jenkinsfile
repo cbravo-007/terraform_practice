@@ -4,21 +4,21 @@ pipeline {
     stage ('Build') {
       steps {
         sh '''#!/bin/bash
-                 echo "pipeline practice"
+                 echo "pipeline practice - DEV"
                  pwd
                  ls -ltr
          '''
       }
-      stage ('Testing and testing') {
+      stage ('Dev stage') {
         sh '''#!/bin/bash
-              echo "Entro a la segunda stage - Testing"
+              echo "Esta es la nueva stage, DEV Stage"
               ls /tmp
               whereis java
         '''
       }
       stage ('Final Stage') {
         sh '''#!/bin/bash
-              echo "Ha llegado a la ultima stage, la Final Stage"        
+              echo "Ha llegado a la ultima stage, la Final Stage del DEV"        
         '''
       }
     }
