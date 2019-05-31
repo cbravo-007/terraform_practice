@@ -10,16 +10,20 @@ pipeline {
          '''
       }
       stage ('Dev stage') {
-        sh '''#!/bin/bash
+        steps {
+          sh '''#!/bin/bash
               echo "Esta es la nueva stage, DEV Stage"
               ls /tmp
               whereis java
-        '''
+          '''  
+        }
       }
       stage ('Final Stage') {
-        sh '''#!/bin/bash
-              echo "Ha llegado a la ultima stage, la Final Stage del DEV"        
-        '''
+        steps {
+          sh '''#!/bin/bash
+                echo "Ha llegado a la ultima stage, la Final Stage del DEV"        
+          '''
+        }
       }
     }
   }
